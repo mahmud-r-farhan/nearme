@@ -1,13 +1,13 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Form from "@/components/Form";
+import Posts from "@/components/Posts";
 
 export default function Home() {
   const pathname = usePathname();
 
   return (
-    <Form />
+    <Posts />
   );
 
 }

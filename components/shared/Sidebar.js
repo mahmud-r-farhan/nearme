@@ -1,22 +1,20 @@
 'use client';
 
 import Link from 'next/link';
-import Traditions from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { mainNavItems } from '@/lib/navigation';
 import useAuthUser from '@/hooks/useAuthUser';
 import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
-import { ShipWheelIcon } from 'lucide-react';
 
 const navItemVariants = cva(
-  'flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors w-full',
+  'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 w-full',
   {
     variants: {
       active: {
-        true: 'bg-primary text-primary-foreground',
-        false: 'text-muted-foreground hover:bg-accent hover:text-accent-foreground',
+        true: 'bg-white/10 backdrop-blur-md shadow-lg border border-white/10 text-white',
+        false: 'text-muted-foreground hover:bg-white/5 hover:text-white',
       },
     },
     defaultVariants: {
@@ -26,12 +24,14 @@ const navItemVariants = cva(
 );
 
 const NavItem = ({ href, icon: Icon, active, label }) => (
-  <div>
-    <Link href={href} className={twMerge(clsx(navItemVariants({ active })))}>
-      <Icon className="w-5 h-5" />
-      <span>{label}</span>
-    </Link>
-  </div>
+  <Link
+    href={href}
+    className={twMerge(clsx(navItemVariants({ active })))}
+    aria-current={active ? 'page' : undefined}
+  >
+    <Icon className="w-5 h-5 shrink-0" />
+    <span className="truncate">{label}</span>
+  </Link>
 );
 
 export default function Sidebar() {
@@ -39,19 +39,9 @@ export default function Sidebar() {
   const { authUser, isLoading } = useAuthUser();
 
   return (
-    <aside className="fixed top-0 w-64 h-screen bg-base-200 border-r border-base-300 hidden lg:flex flex-col">
-      {/* Logo */}
-      <div className="p-4">
-        <Link href="/" className="flex items-center gap-2">
-          <ShipWheelIcon className="w-9 h-9 text-primary" />
-          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-2xl font-bold tracking-tight text-transparent">
-            NearMe
-          </span>
-        </Link>
-      </div>
-
+    <aside className="fixed top-0 left-0 w-64 h-[100dvh] bg-gradient-to-b from-base-100/60 to-base-100/30 backdrop-blur-xl border-r border-white/10 shadow-xl hidden lg:flex flex-col">
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 mt-14 overflow-y-auto px-4 py-6 space-y-2">
         {mainNavItems.map((item) => (
           <NavItem
             key={item.href}
@@ -63,8 +53,8 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      {/* User Profile Section */}
-      <div className="p-4 border-t border-base-300 mt-auto">
+      {/* User Section */}
+      <div className="p-4 border-t border-white/10 bg-white/5 backdrop-blur-md">
         {isLoading ? (
           <div className="flex items-center gap-3 animate-pulse">
             <div className="w-10 h-10 rounded-full bg-gray-300" />
@@ -76,17 +66,17 @@ export default function Sidebar() {
         ) : authUser ? (
           <div className="flex items-center gap-3">
             <div className="avatar">
-              <div className="w-10 h-10 rounded-full overflow-hidden">
+              <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-success ring-offset-2">
                 <img
-                  src={authUser?.profilePic || '/placeholder-avatar.png'}
+                  src={authUser.profilePic || 'https://avatars.githubusercontent.com/u/114731414?v=4'}
                   alt="User Avatar"
                   className="object-cover w-full h-full"
                 />
               </div>
             </div>
-            <div className="flex-1">
-              <p className="font-semibold text-sm text-foreground">
-                {authUser?.fullName || 'User Name'}
+            <div className="flex-1 overflow-hidden">
+              <p className="font-semibold text-sm text-white truncate">
+                {authUser.fullName || 'User Name'}
               </p>
               <p className="text-xs text-success flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-success inline-block" />
@@ -98,7 +88,7 @@ export default function Sidebar() {
           <div className="flex items-center gap-3">
             <div className="avatar w-10 h-10 rounded-full bg-gray-200" />
             <div className="flex-1">
-              <p className="font-semibold text-sm text-foreground">Guest</p>
+              <p className="font-semibold text-sm text-white">Guest</p>
               <p className="text-xs text-muted-foreground">Please log in</p>
             </div>
           </div>

@@ -60,7 +60,7 @@ export default function SignupPage() {
           <div className="mb-6 flex items-center gap-2">
             <ShipWheelIcon className="h-9 w-9 text-primary" />
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-3xl font-bold tracking-tight text-transparent">
-              Streamify
+              Nearme
             </span>
           </div>
 
@@ -76,7 +76,7 @@ export default function SignupPage() {
               <div>
                 <h2 className="text-xl font-semibold">Create an Account</h2>
                 <p className="text-sm text-muted-foreground">
-                  Join Streamify and start your language learning adventure!
+                  Join Nearmeand start your language learning adventure!
                 </p>
               </div>
 

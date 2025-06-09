@@ -1,9 +1,9 @@
 'use client';
 
-import { useAuthUser } from '@/hooks/useAuthUser';
+import useAuthUser from '@/hooks/useAuthUser';
 import { useRouter } from 'next/navigation';
 import HomePage from '@/pages/HomePage';
-import PageLoader from '@/components/lib/PageLoader';
+import PageLoader from '@/components/ui/PageLoader';
 
 export default function Home() {
   const { isLoading, authUser } = useAuthUser();

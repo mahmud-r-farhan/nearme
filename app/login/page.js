@@ -54,7 +54,7 @@ export default function LoginPage() {
           <div className="mb-6 flex items-center gap-2">
             <ShipWheelIcon className="h-9 w-9 text-primary" />
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-3xl font-bold tracking-tight text-transparent">
-              Streamify
+              NearMe
             </span>
           </div>
 

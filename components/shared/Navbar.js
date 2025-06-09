@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { topNavItems } from "@/lib/navigation";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { topNavItems } from '@/lib/navigation';
 
 export default function Navbar() {
   return (

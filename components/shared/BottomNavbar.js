@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { mainNavItems } from "@/lib/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { mainNavItems } from '@/lib/navigation';
 
 const bottomNavVariants = {
   hidden: { y: 100, opacity: 0 },
@@ -31,8 +31,8 @@ export default function BottomNavbar() {
             whileTap={{ scale: 0.9 }}
             className={`p-2 rounded-full ${
               pathname === item.href
-                ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:bg-accent"
+                ? 'bg-primary text-primary-foreground'
+                : 'text-muted-foreground hover:bg-accent'
             }`}
           >
             <item.icon className="w-6 h-6" />

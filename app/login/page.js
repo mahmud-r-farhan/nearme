@@ -60,9 +60,9 @@ export default function LoginPage() {
       transition={{ duration: 0.4 }}
       className="flex min-h-screen items-center justify-center bg-muted p-4"
     >
-      <Card className="w-full max-w-5xl flex flex-col lg:flex-row overflow-hidden shadow-xl border-none">
+      <Card className="w-full max-w-3xl flex flex-col lg:flex-row overflow-hidden shadow-xl border-none">
         {/* Form Side */}
-        <div className="w-full lg:w-1/2 p-6 sm:p-8 flex flex-col justify-center">
+        <div className="w-full lg:w-2/2 p-6 sm:p-8 flex flex-col justify-center">
           <CardHeader className="flex flex-row items-center gap-2 mb-6 p-0">
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               NearMe
@@ -158,21 +158,10 @@ export default function LoginPage() {
             transition={{ delay: 0.3 }}
             className="max-w-md p-8 text-center"
           >
-            <div className="relative aspect-square max-w-sm mx-auto">
-              <img
-                src="/logo.png"
-                alt="Language connection"
-                className="h-full w-full object-contain"
-              />
-            </div>
-            <div className="mt-6 space-y-2">
-              <h2 className="text-xl font-semibold">
-                Connect with Peoples and Fun!
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                Find, connect, chats, meets and events
-              </p>
-            </div>
+            <h2 className="text-2xl font-bold mb-4">Join NearMe!</h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              NearMe connects you with native speakers to practice languages in real-time.
+            </p>
           </motion.div>
         </div>
       </Card>

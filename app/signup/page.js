@@ -58,9 +58,9 @@ export default function SignupPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4 sm:p-6 md:p-8">
-      <div className="flex w-full max-w-5xl flex-col overflow-hidden rounded-lg border border-primary/25 bg-base-100 shadow-lg lg:flex-row">
+      <div className="flex w-full max-w-4xl flex-col overflow-hidden rounded-lg border border-primary/25 bg-base-100 shadow-lg lg:flex-row">
         {/* FORM SIDE */}
-        <div className="flex w-full flex-col p-6 sm:p-8 lg:w-1/2">
+        <div className="flex w-full flex-col p-6 sm:p-8 lg:w-2/2">
           <div className="mb-6 flex items-center gap-2">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-3xl font-bold tracking-tight text-transparent">
               NearMe
@@ -77,7 +77,7 @@ export default function SignupPage() {
             <div>
               <h2 className="text-xl font-semibold">Create an Account</h2>
               <p className="text-sm text-muted-foreground">
-                Join NearMe and Find, Connect, Meet, Chats, and Fun!!
+                Join Near Me to find, connect, and meet people around you.
               </p>
             </div>
 
@@ -230,17 +230,12 @@ export default function SignupPage() {
         </div>
 
         {/* IMAGE SIDE */}
-        <div className="hidden w-full items-center justify-center bg-primary/10 lg:flex lg:w-1/2">
+        <div className="hidden w-full items-center justify-center bg-primary/10 lg:flex lg:w-2/3">
           <div className="max-w-md p-8 text-center">
-            <div className="relative aspect-square max-w-sm mx-auto">
-              <img src="logo2.png" 
-              alt="Language connection" 
-              className="h-full w-full object-contain" />
-            </div>
             <div className="mt-4 space-y-2">
-              <h2 className="text-xl font-semibold">Connect with language partners worldwide</h2>
+              <h2 className="text-xl font-semibold">Sign up and join Near Me!</h2>
               <p className="text-sm text-muted-foreground">
-                Practice conversations, make friends, and improve your language skills together
+                Find, Connect, Meet, Chats, and Fun with people around you.
               </p>
             </div>
           </div>

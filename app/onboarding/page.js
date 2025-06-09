@@ -1,4 +1,4 @@
-import HomeClient from "@/pages/HomeClient";
+import HomeClient from "@/pages/HomePage";
 
 export const metadata = {
   title: "Near Me - Connect, Chat, Share, Events",

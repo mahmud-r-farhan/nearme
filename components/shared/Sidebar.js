@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HomeIcon, UsersIcon, CalendarSearch, Rss } from "lucide-react";
 import { motion } from "framer-motion";
+import { mainNavItems } from "@/lib/navigation";
 
 const sidebarVariants = {
   hidden: { x: -100, opacity: 0 },
   visible: { x: 0, opacity: 1, transition: { duration: 0.3 } },
 };
 
-const NavItem = ({ href, icon, active, label }) => (
+const NavItem = ({ href, icon: Icon, active, label }) => (
   <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 300 }}>
     <Link
       href={href}
@@ -20,7 +20,7 @@ const NavItem = ({ href, icon, active, label }) => (
           : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
       }`}
     >
-      {icon}
+      <Icon className="w-5 h-5" />
       <span>{label}</span>
     </Link>
   </motion.div>
@@ -37,10 +37,15 @@ export default function Sidebar() {
       className="w-64 h-[100vh] bg-muted border-r border-border hidden lg:flex flex-col fixed top-0"
     >
       <nav className="flex-1 p-4 mt-20 space-y-2">
-        <NavItem href="/" icon={<HomeIcon className="w-5 h-5" />} active={pathname === "/"} label="Home" />
-        <NavItem href="/friends" icon={<UsersIcon className="w-5 h-5" />} active={pathname === "/friends"} label="Friends" />
-        <NavItem href="/events" icon={<CalendarSearch className="w-5 h-5" />} active={pathname === "/events"} label="Events" />
-        <NavItem href="/posts" icon={<Rss className="w-5 h-5" />} active={pathname === "/posts"} label="Posts" />
+        {mainNavItems.map((item) => (
+          <NavItem
+            key={item.href}
+            href={item.href}
+            icon={item.icon}
+            active={pathname === item.href}
+            label={item.label}
+          />
+        ))}
       </nav>
 
       <motion.div
@@ -51,10 +56,7 @@ export default function Sidebar() {
         <div className="flex items-center gap-3">
           <div className="avatar w-10 h-10 rounded-full overflow-hidden bg-gray-200" />
           <div>
-            <p className="font-semibold text-sm">
-            {/*  {users?.name ?? 'User'} */}
-              User Name
-             </p>
+            <p className="font-semibold text-sm">User Name</p>
             <p className="text-xs text-success flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-success inline-block" /> Online
             </p>

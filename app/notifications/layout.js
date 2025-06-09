@@ -18,7 +18,6 @@ export const metadata = {
     template: "%s | My Next App",
   },
   description: "A modern web application built with Next.js 13+ App Router.",
-  metadataBase: new URL("https://yourdomain.com"), // change this to your actual domain
   openGraph: {
     title: "Create Next App",
     description: "A modern web application built with Next.js.",
@@ -26,7 +25,7 @@ export const metadata = {
     siteName: "My Next App",
     images: [
       {
-        url: "/og-image.png", // optional: path to your open graph image
+        url: "", // optional: path to your open graph image
         width: 1200,
         height: 630,
         alt: "Open Graph Image",
@@ -35,19 +34,11 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Create Next App",
-    description: "A modern web application built with Next.js.",
-    creator: "@your_twitter_handle", // optional
-    images: ["/og-image.png"],
-  },
+
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
-  themeColor: "#ffffff",
+  }
 };
 
 export default function RootLayout({ children }) {

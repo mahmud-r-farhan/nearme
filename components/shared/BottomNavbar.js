@@ -2,17 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HomeIcon, UsersIcon, CalendarSearch, Rss, MessageCircleMore } from "lucide-react";
 import { motion } from "framer-motion";
-
-const navItems = [
-  { href: "/friends", icon: UsersIcon, label: "Friends" },
-  { href: "/events", icon: CalendarSearch, label: "Events" },
-  { href: "/", icon: HomeIcon, label: "Home" },
-  { href: "/posts", icon: Rss, label: "Posts" },
-  { href: "/chats", icon: MessageCircleMore, label: "Chat" },
-
-];
+import { mainNavItems } from "@/lib/navigation";
 
 const bottomNavVariants = {
   hidden: { y: 100, opacity: 0 },
@@ -29,7 +20,7 @@ export default function BottomNavbar() {
       animate="visible"
       className="lg:hidden fixed bottom-0 left-0 right-0 bg-muted border-t border-border flex justify-around items-center h-16 z-50"
     >
-      {navItems.map((item) => (
+      {mainNavItems.map((item) => (
         <Link
           key={item.href}
           href={item.href}

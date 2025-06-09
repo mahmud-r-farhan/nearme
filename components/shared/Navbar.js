@@ -22,7 +22,7 @@ export default function Navbar() {
         <div className="p-5 border-b border-border">
           <Link href="/" className="flex items-center gap-2.5">
             <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-              <img src="/logo.png" alt="Logo" className="w-8 h-8" />
+              <img src="/logo.png" alt="Logo" className="w-7 h-8" />
             </motion.div>
             <span className="text-2xl font-bold font-mono bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
               NearMe

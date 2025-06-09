@@ -1,10 +1,27 @@
-import HomeClient from "@/pages/HomeClient";
+'use client';
 
-export const metadata = {
-  title: "Near Me - Connect, Chat, Share, Events",
-  description: "Learn more about Near-me.",
-};
+import { useAuthUser } from '@/hooks/useAuthUser';
+import { useRouter } from 'next/navigation';
+import HomePage from '@/components/HomePage';
+import PageLoader from '@/components/PageLoader';
 
 export default function Home() {
-  return <HomeClient />;
+  const { isLoading, authUser } = useAuthUser();
+  const router = useRouter();
+  const isAuthenticated = Boolean(authUser);
+  const isOnboarded = authUser?.isOnboarded;
+
+  if (isLoading) return <PageLoader />;
+
+  if (!isAuthenticated) {
+    router.push('/login');
+    return null;
+  }
+
+  if (!isOnboarded) {
+    router.push('/onboarding');
+    return null;
+  }
+
+  return <HomePage />;
 }

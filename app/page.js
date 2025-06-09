@@ -1,11 +1,10 @@
-"use client";
-import Layout from "@/components/layout/Layout";
+import HomeClient from "@/pages/HomeClient";
+
+export const metadata = {
+  title: "Near Me - Connect, Chat, Share, Events",
+  description: "Learn more about Near-me.",
+};
 
 export default function Home() {
-
-
-  return (
-    < Layout showSidebar={true} />
-     
-  );
+  return <HomeClient />;
 }

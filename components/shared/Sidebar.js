@@ -2,16 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import { mainNavItems } from "@/lib/navigation";
 
-const sidebarVariants = {
-  hidden: { x: -100, opacity: 0 },
-  visible: { x: 0, opacity: 1, transition: { duration: 0.3 } },
-};
-
 const NavItem = ({ href, icon: Icon, active, label }) => (
-  <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 300 }}>
+  <div>
     <Link
       href={href}
       className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
@@ -23,19 +17,14 @@ const NavItem = ({ href, icon: Icon, active, label }) => (
       <Icon className="w-5 h-5" />
       <span>{label}</span>
     </Link>
-  </motion.div>
+  </div>
 );
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <motion.aside
-      variants={sidebarVariants}
-      initial="hidden"
-      animate="visible"
-      className="w-64 h-[100vh] bg-muted border-r border-border hidden lg:flex flex-col fixed top-0"
-    >
+    <aside className="w-64 h-[100vh] bg-muted border-r border-border hidden lg:flex flex-col fixed top-0">
       <nav className="flex-1 p-4 mt-20 space-y-2">
         {mainNavItems.map((item) => (
           <NavItem
@@ -48,11 +37,7 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      <motion.div
-        className="p-4 border-t border-border mt-auto"
-        whileHover={{ scale: 1.02 }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
+      <div className="p-4 border-t border-border mt-auto">
         <div className="flex items-center gap-3">
           <div className="avatar w-10 h-10 rounded-full overflow-hidden bg-gray-200" />
           <div>
@@ -62,7 +47,7 @@ export default function Sidebar() {
             </p>
           </div>
         </div>
-      </motion.div>
-    </motion.aside>
+      </div>
+    </aside>
   );
 }

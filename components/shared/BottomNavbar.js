@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HomeIcon, UsersIcon, CalendarSearch, Rss, Settings } from "lucide-react";
+import { HomeIcon, UsersIcon, CalendarSearch, Rss, MessageCircleMore } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navItems = [
-  { href: "/", icon: HomeIcon, label: "Home" },
   { href: "/friends", icon: UsersIcon, label: "Friends" },
   { href: "/events", icon: CalendarSearch, label: "Events" },
+  { href: "/", icon: HomeIcon, label: "Home" },
   { href: "/posts", icon: Rss, label: "Posts" },
-  { href: "/settings", icon: Settings, label: "Settings" },
+  { href: "/chats", icon: MessageCircleMore, label: "Chat" },
+
 ];
 
 const bottomNavVariants = {

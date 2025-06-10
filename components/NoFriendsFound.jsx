@@ -12,7 +12,7 @@ const NoFriendsFound = () => {
     >
       <h3 className="font-semibold text-lg text-gray-800 mb-2">No friends yet</h3>
       <p className="text-gray-600">
-        Connect with language partners below to start practicing together!
+        Find friends and fun!
       </p>
     </motion.div>
   );

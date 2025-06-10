@@ -27,5 +27,9 @@ export default function Home() {
   if (!token) return null;
   if (authUser && !authUser.isOnboarded) return null;
   */}
-  return <HomePage />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HomePage />
+    </QueryClientProvider>
+  );
 }

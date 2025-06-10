@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <motion.div
-      className="min-h-screen flex flex-col justify-center items-center gap-8 p-10 bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 text-white text-center"
+      className="min-h-screen flex flex-col justify-center items-center gap-8 p-10 bg-gradient-to-tr from-cyan-400 via-emerald-300 to-lime-200 text-white text-center"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}

@@ -13,15 +13,15 @@ export default function Home() {
 
   if (isLoading) return <PageLoader />;
 
-  if (!isAuthenticated) {
-    router.push('/login');
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //  router.push('/login');
+   // return null;
+  //} 
 
-  if (!isOnboarded) {
-    router.push('/onboarding');
-    return null;
-  }
+ // if (!isOnboarded) {
+  //  router.push('/onboarding');
+   // return null;
+  // }
 
   return <HomePage />;
 }

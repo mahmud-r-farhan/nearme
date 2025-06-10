@@ -1,49 +1,97 @@
-"use client";
+'use client';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { motion } from 'framer-motion';
+import { Search, Calendar, Menu } from 'lucide-react';
+import PostForm from '@/components/PostForm';
+import PostList from '@/components/PostList';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
+import RightSidebar from '@/components/RightSidebar'; 
 
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { Sparkles, LoaderCircle } from "lucide-react";
+
+const SEO = ({ image, description }) => {
+  return (
+    <head>
+      <meta property="og:image" content={image} />
+      <meta property="og:description" content={description} />
+      <title>Anonymous Social Platform</title>
+    </head>
+  );
+};
 
 export default function Home() {
-  const pathname = usePathname();
+  const [posts, setPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [dateFilter, setDateFilter] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get('/api/posts');
+      setPosts(response.data);
+      toast.success('Posts fetched successfully!');
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      setError('Failed to fetch posts. Please try again later.');
+      toast.error('Failed to fetch posts');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleNewPost = (newPost) => {
+    setPosts([newPost, ...posts]);
+    toast.success('Post created successfully!');
+  };
+
+  const filteredPosts = posts.filter((post) => {
+    const matchesSearch =
+      post.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.author.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesDate = dateFilter ? new Date(post.createdAt) >= dateFilter : true;
+    return matchesSearch && matchesDate;
+  });
 
   return (
     <motion.div
-      className="min-h-screen flex flex-col justify-center items-center gap-8 p-10 bg-gradient-to-tr from-cyan-400 via-emerald-300 to-lime-200 text-white text-center"
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.5 }}
+      className="max-w-2xl mx-auto space-y-8 p-4 md:p-8 relative"
     >
-      <motion.h1
-        className="text-4xl font-bold flex items-center gap-2"
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.2 }}
+      <SEO
+        image="https://res.cloudinary.com/dydnhyxfh/image/upload/v1739117754/image-wtRQg0aGJkPVZemCd-o5s_nc7njv.webp"
+        description="Browse anonymous posts and share your thoughts freely."
+      />
+      {/* Toggle Button for Sidebar */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="fixed right-4 top-4 z-50 md:hidden" // Visible only on mobile
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
-        <Sparkles className="text-yellow-300" />
-        This route is under development!
-      </motion.h1>
-
-      <motion.p
-        className="text-lg sm:text-xl max-w-xl leading-relaxed"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        We’re building this page using{" "}
-        <strong>ShadCN UI</strong>, <strong>Framer Motion</strong>,{" "}
-        <strong>Tailwind CSS</strong>, and <strong>Lucide Icons</strong>.
-      </motion.p>
-
-      <motion.div
-        className="flex items-center gap-2 text-sm bg-white/10 p-3 rounded-lg backdrop-blur-lg"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-      >
-        <LoaderCircle className="animate-spin text-white" size={16} />
-        Current route: <code className="font-mono">{pathname}</code>
-      </motion.div>
+        <Menu className="h-5 w-5" />
+      </Button>
+      <PostForm onNewPost={handleNewPost} />
+      <PostList posts={filteredPosts} isLoading={isLoading} error={error} />
+      <RightSidebar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        dateFilter={dateFilter}
+        setDateFilter={setDateFilter}
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
     </motion.div>
   );
 }

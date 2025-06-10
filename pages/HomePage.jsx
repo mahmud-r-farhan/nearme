@@ -130,10 +130,10 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
-                  Meet New Learners
+                  Meet People
                 </h2>
                 <p className="text-gray-600 mt-1">
-                  Discover perfect language exchange partners based on your profile
+                  Connect, Chat, Meet and Fun.
                 </p>
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function HomePage() {
                 No recommendations available
               </h3>
               <p className="text-gray-600">
-                Check back later for new language partners!
+                Check back later! We will suggest users based on your profile and preferences.
               </p>
             </motion.div>
           ) : (

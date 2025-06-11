@@ -1,10 +1,8 @@
-'use client';
-import Link from 'next/link';
-import { MessageSquare } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-
 export default function CommentButton({ post }) {
+  if (!post || !post._id) {
+    return null; // or render a fallback UI
+  }
+
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}

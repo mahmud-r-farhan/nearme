@@ -1,4 +1,5 @@
 'use client';
+import Head from 'next/head';
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
@@ -12,11 +13,11 @@ import RightSidebar from '@/components/RightSidebar';
 
 const SEO = ({ image, description }) => {
   return (
-    <head>
+    <Head>
       <meta property="og:image" content={image} />
       <meta property="og:description" content={description} />
       <title>Anonymous Social Platform</title>
-    </head>
+    </Head>
   );
 };
 

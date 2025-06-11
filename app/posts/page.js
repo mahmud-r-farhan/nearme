@@ -42,7 +42,6 @@ export default function Home() {
     try {
       const response = await axios.get('https://anonymous-posting-app.vercel.app/api/posts');
       setPosts(response.data);
-      toast.success('Posts fetched successfully!');
     } catch (error) {
       console.error('Error fetching posts:', error);
       setError('Failed to fetch posts. Please try again later.');

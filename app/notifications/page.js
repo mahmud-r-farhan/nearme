@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { acceptFriendRequest, getFriendRequests } from '@/lib/api';
@@ -75,11 +76,13 @@ const NotificationsPage = () => {
                     >
                       <div className="p-4 flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className="w-14 h-14 rounded-full bg-gray-200 overflow-hidden">
-                            <img
+                          <div className="w-14 h-14 rounded-full bg-gray-200 overflow-hidden relative">
+                            <Image
                               src={request.sender.profilePic}
                               alt={request.sender.fullName}
-                              className="w-full h-full object-cover"
+                              fill
+                              className="object-cover"
+                              sizes="56px"
                             />
                           </div>
                           <div>
@@ -137,11 +140,13 @@ const NotificationsPage = () => {
                       className="bg-white shadow-sm rounded-lg"
                     >
                       <div className="p-4 flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-full overflow-hidden">
-                          <img
+                        <div className="w-10 h-10 rounded-full overflow-hidden relative">
+                          <Image
                             src={notification.recipient.profilePic}
                             alt={notification.recipient.fullName}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="40px"
                           />
                         </div>
                         <div className="flex-1">

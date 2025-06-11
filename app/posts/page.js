@@ -1,11 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { Search, Calendar, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import PostForm from '@/components/PostForm';
 import PostList from '@/components/PostList';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import RightSidebar from '@/components/RightSidebar'; 
@@ -22,6 +21,7 @@ const SEO = ({ image, description }) => {
 };
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [dateFilter, setDateFilter] = useState(null);
@@ -30,14 +30,16 @@ export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
   useEffect(() => {
-    fetchPosts();
+    setMounted(true);
   }, []);
 
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
+    if (!mounted) return;
+    
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get('/api/posts');
+      const response = await axios.get('https://anonymous-posting-app.vercel.app/api/posts');
       setPosts(response.data);
       toast.success('Posts fetched successfully!');
     } catch (error) {
@@ -47,7 +49,13 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [mounted]);
+
+  useEffect(() => {
+    if (mounted) {
+      fetchPosts();
+    }
+  }, [fetchPosts, mounted]);
 
   const handleNewPost = (newPost) => {
     setPosts([newPost, ...posts]);
@@ -61,6 +69,10 @@ export default function Home() {
     const matchesDate = dateFilter ? new Date(post.createdAt) >= dateFilter : true;
     return matchesSearch && matchesDate;
   });
+
+  if (!mounted) {
+    return null; // Return null on server-side
+  }
 
   return (
     <motion.div

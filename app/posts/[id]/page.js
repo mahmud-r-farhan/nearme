@@ -30,7 +30,10 @@ export default function PostDetail() {
       } catch (error) {
         console.error("Error fetching post:", error);
         // Fallback to random avatar on API failure
-        setPost({ ...post, profilePicture: getRandomAvatar(Math.random().toString()) });
+        setPost((prev) => ({
+          ...prev,
+          profilePicture: getRandomAvatar(Math.random().toString()),
+        }));
       }
     };
     getPost();

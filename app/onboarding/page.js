@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -67,12 +68,14 @@ const OnboardingPage = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* PROFILE PIC */}
             <div className="flex flex-col items-center justify-center space-y-4">
-              <div className="w-32 h-32 rounded-full bg-gray-100 overflow-hidden">
+              <div className="w-32 h-32 rounded-full bg-gray-100 overflow-hidden relative">
                 {formState.profilePic ? (
-                  <img
+                  <Image
                     src={formState.profilePic}
                     alt="Profile Preview"
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="128px"
                   />
                 ) : (
                   <div className="flex items-center justify-center h-full">

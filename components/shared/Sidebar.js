@@ -7,6 +7,7 @@ import useAuthUser from '@/hooks/useAuthUser';
 import { cva } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
+import Image from 'next/image';
 
 const navItemVariants = cva(
   'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 w-full',
@@ -66,11 +67,13 @@ export default function Sidebar() {
         ) : authUser ? (
           <div className="flex items-center gap-3">
             <div className="avatar">
-              <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-success ring-offset-2">
-                <img
+              <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-success ring-offset-2 relative">
+                <Image
                   src={authUser.profilePic || 'https://avatars.githubusercontent.com/u/114731414?v=4'}
                   alt="User Avatar"
-                  className="object-cover w-full h-full"
+                  fill
+                  className="object-cover"
+                  sizes="40px"
                 />
               </div>
             </div>

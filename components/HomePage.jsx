@@ -13,7 +13,7 @@ import { capitialize } from '@/lib/utils';
 import { getLanguageFlag } from '@/components/FriendCard';
 
 export default function HomePage() {
-  const queryClient = useQueryClient();
+ // const queryClient = useQueryClient();
   const [mounted, setMounted] = useState(false);
   const [outgoingRequestsIds, setOutgoingRequestsIds] = useState(new Set());
 

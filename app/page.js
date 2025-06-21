@@ -19,7 +19,7 @@ export default function Home() {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
+ /* useEffect(() => {
     if (mounted && !isLoading) {
       if (!token) {
         router.push('/login');
@@ -35,6 +35,7 @@ export default function Home() {
 
   if (!token) return null;
   if (authUser && !authUser.isOnboarded) return null;
+  */
 
   return <HomePage />;
 }
